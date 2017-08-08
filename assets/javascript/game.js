@@ -65,7 +65,7 @@ document.onkeyup = function(event) {
 		console.log("playerGuess: " + currentGame.playerGuess);
 		console.log("playerGuess is 0? " + (currentGame.playerGuess === "0"));
 		console.log("Display Updated? " + updateDisplay(currentGame));
-		alert("Paused");
+		// alert("Paused");
 		if (currentGame.playerGuess === "0") {
 			currentGame.playerGuess = keyPressed;
 		}
@@ -73,43 +73,45 @@ document.onkeyup = function(event) {
 			currentGame.playerGuess += keyPressed;
 		}
 		console.log("Display Updated? " + updateDisplay(currentGame));
-		alert("Paused");
+		// alert("Paused");
 	}
-	// // If Enter is pressed check if we have a guess
-	// else if (keyPressed === "Enter" && currentGame.playerGuess != "") {
-	// 	currentGame.guessesSoFar.push(currentGame.playerGuess);
+	// If Enter is pressed check if we have a guess
+	else if (keyPressed === "Enter" && currentGame.playerGuess != "") {
+		currentGame.guessesSoFar.push(currentGame.playerGuess);
 
-	// 	if (parseInt(currentGame.playerGuess) === currentGame.myNumber) {
-	// 		currentGame.winLoseStatus = "won";
-	// 		currentGame.wins++;
-	// 	}
-	// 	else if (currentGame.guessesRemaining === 0) {
-	// 		currentGame.winLoseStatus = "lost";
-	// 		currentGame.losses++;
-	// 	}
-	// 	else {
-	// 		currentGame.playerGuess = "";
-	// 		currentGame.guessesRemaining--;
-	// 	}
-	// }
+		if (parseInt(currentGame.playerGuess) === currentGame.myNumber) {
+			currentGame.winLoseStatus = "won";
+			currentGame.wins++;
+		}
+		else if (currentGame.guessesRemaining === 0) {
+			currentGame.winLoseStatus = "lost";
+			currentGame.losses++;
+		}
+		else {
+			currentGame.playerGuess = "";
+			currentGame.guessesRemaining--;
+		}
+	}
 	
-		console.log("Display Updated? " + updateDisplay(currentGame));
-		alert("Paused");
+	console.log("Display Updated? " + updateDisplay(currentGame));
+	setTimeout(function() {
+		// alert("Paused");
+		// If player won or lost prompt to start a new game
+		if (currentGame.winLoseStatus === "won") {
+			alert("Congratulations!!! You guessed it!");
+			playAgain = confirm("Would you like to play again?");
+		}
+		else if (currentGame.winLoseStatus === "lost") {
+			alert("Sorry. That was not it.");
+			playAgain = confirm("Would you like to play again?");
+		}
+
+		if (playAgain === true) {
+			currentGame.reset();
+			updateDisplay(currentGame);
+		}
+	}, 1000);
 }
 
-	// If player won or lost prompt to start a new game
-	// if (currentGame.winLoseStatus === "won") {
-	// 	alert("Congratulations!!! You guessed it!");
-	// 	playAgain = confirm("Would you like to play again?");
-	// }
-	// else if (currentGame.winLoseStatus === "lost") {
-	// 	alert("Sorry. That was not it.");
-	// 	playAgain = confirm("Would you like to play again?");
-	// }
-
-	// if (playAgain === true) {
-	// 	currentGame.reset();
-	// 	updateDisplay(currentGame);
-	// }
 
 
