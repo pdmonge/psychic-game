@@ -102,7 +102,7 @@ document.onkeyup = function(event) {
 			playAgain = confirm("Would you like to play again?");
 		}
 		else if (currentGame.winLoseStatus === "lost") {
-			alert("Sorry. That was not it.");
+			alert("Sorry. You lost.");
 			playAgain = confirm("Would you like to play again?");
 		}
 
